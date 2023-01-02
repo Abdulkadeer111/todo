@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sikirullahi Todo App</title>
+	<script>
+		document.addEventListener('DOMContentLoaded', function(){
+			// by default submit button should be disabled
+			document.querySelector('#submit').disabled = true;
+
+			document.querySelector('#todo').onkeyup = () => {
+				if (document.querySelector('#todo').value.length > 0){
+					document.querySelector('#submit').disabled = false;
+				} else {
+					document.querySelector('#submit').disabled = true;
+				}
+				
+			}
+
+			document.querySelector('form').onsubmit = () => {
+				const task = document.querySelector('#todo').value;
+				
+				const li = document.createElement('li');
+				li.innerText= task;
+
+				document.querySelector('#todos').append(li);
+
+				document.querySelector('#todo').value = ' ';
+				document.querySelector('#submit').disabled = true;
+
+				// stop form from submitting
+				return false;
+			}
+		});
+	</script>
+</head>
+<body>
+	<h1>Todo List</h1>
+	<ul id="todos">		
+	</ul>
+	<form>
+		<input type="text" id="todo" placeholder="New todo">
+		<input type="submit" id="submit">
+	</form>
+</body>
+</html>
